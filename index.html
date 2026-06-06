@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Parameter — Studio Produk Digital Indonesia</title>
+<meta name="description" content="Parameter membangun produk digital yang beneran dipakai. Kami bikin SaaS sendiri (LMS Pro, Ritme) & bantu UMKM punya aplikasi, sistem, website, dan landing page yang naikin produktivitas." />
+<meta property="og:title" content="Parameter — Studio Produk Digital Indonesia" />
+<meta property="og:description" content="Builder produk digital, bukan sekadar vendor. Atur parameter pertumbuhan bisnismu." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --navy:#0B1437; --navy-2:#070B1F; --blue:#2563EB; --blue-bright:#3B82F6;
+    --blue-soft:#EEF3FF; --ink:#0B1437; --g700:#384361;
+    --g600:#4A5578; --g500:#6B7494; --g400:#97A0BC;
+    --bg:#FFFFFF; --bg-soft:#F6F8FC; --border:#E7EBF4; --white:#fff;
+    --r:16px; --rl:24px;
+    --shadow:0 1px 2px rgba(11,20,55,.04), 0 12px 30px -12px rgba(11,20,55,.12);
+    --shadow-lg:0 30px 70px -28px rgba(11,20,55,.4);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:hidden;}
+  h1,h2,h3,.display{font-family:'Space Grotesk','Inter',sans-serif;letter-spacing:-.02em;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 24px;}
+  .mono{font-family:'Space Grotesk',monospace;}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1);}
+  .reveal.in{opacity:1;transform:none;}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
+
+  /* ===== NAV ===== */
+  header{position:sticky;top:0;z-index:50;transition:all .3s;border-bottom:1px solid transparent;}
+  header.scrolled{background:rgba(255,255,255,.85);backdrop-filter:blur(12px);border-color:var(--border);}
+  nav{display:flex;align-items:center;justify-content:space-between;height:76px;}
+  nav .logo{height:34px;width:auto;display:block;}
+  .nav-links{display:flex;gap:34px;font-size:14.5px;font-weight:600;color:var(--g600);}
+  .nav-links a:hover{color:var(--blue);}
+  .nav-cta{display:flex;align-items:center;gap:10px;}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;border-radius:999px;transition:all .2s;cursor:pointer;border:none;font-family:inherit;}
+  .btn-primary{background:var(--blue);color:#fff;padding:12px 22px;font-size:14.5px;box-shadow:0 10px 24px -8px rgba(37,99,235,.6);}
+  .btn-primary:hover{background:#1d4ed8;transform:translateY(-2px);}
+  .btn-ghost{background:#fff;color:var(--ink);border:1px solid var(--border);padding:12px 22px;font-size:14.5px;}
+  .btn-ghost:hover{border-color:var(--blue);color:var(--blue);}
+  .btn-lg{padding:16px 30px;font-size:16px;}
+  .nav-toggle{display:none;background:none;border:none;cursor:pointer;color:var(--ink);}
+  @media(max-width:860px){.nav-links,.nav-cta .btn-ghost{display:none;}.nav-toggle{display:block;}}
+
+  /* ===== HERO ===== */
+  .hero{position:relative;padding:70px 0 40px;overflow:hidden;}
+  .hero-grid{position:absolute;inset:0;background-image:linear-gradient(#0b143708 1px,transparent 1px),linear-gradient(90deg,#0b143708 1px,transparent 1px);background-size:46px 46px;mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000,transparent);}
+  .hero-glow{position:absolute;top:-180px;left:50%;transform:translateX(-50%);width:760px;height:520px;background:radial-gradient(closest-side,rgba(37,99,235,.16),transparent);pointer-events:none;}
+  .hero-inner{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;}
+  @media(max-width:920px){.hero-inner{grid-template-columns:1fr;gap:40px;}}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--border);border-radius:999px;padding:7px 14px;font-size:12.5px;font-weight:700;color:var(--g600);box-shadow:var(--shadow);}
+  .eyebrow .dot{width:8px;height:8px;border-radius:2px;background:var(--blue);box-shadow:3px 0 0 #1e3a8a;}
+  h1{font-size:clamp(38px,5.4vw,62px);line-height:1.02;font-weight:700;margin:22px 0 0;}
+  h1 .hl{color:var(--blue);position:relative;}
+  .hero p.sub{font-size:18px;color:var(--g600);margin-top:22px;max-width:540px;line-height:1.6;}
+  .hero p.sub b{color:var(--ink);font-weight:600;}
+  .hero-cta{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap;}
+  .hero-trust{margin-top:26px;display:flex;align-items:center;gap:14px;font-size:13px;color:var(--g500);font-weight:500;flex-wrap:wrap;}
+  .hero-trust b{color:var(--ink);}
+
+  /* parameter console (hero visual) */
+  .console{position:relative;background:var(--navy);border-radius:var(--rl);padding:26px;box-shadow:var(--shadow-lg);color:#fff;}
+  .console::before{content:"";position:absolute;inset:0;border-radius:var(--rl);background:linear-gradient(160deg,rgba(59,130,246,.18),transparent 50%);pointer-events:none;}
+  .console-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
+  .console-top .ttl{font-family:'Space Grotesk';font-weight:600;font-size:14px;letter-spacing:.02em;color:#cdd7f5;}
+  .console-dots{display:flex;gap:6px;}
+  .console-dots span{width:10px;height:10px;border-radius:50%;background:#ffffff22;}
+  .console-dots span:first-child{background:#3b82f6;}
+  .param{margin-bottom:18px;}
+  .param-row{display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:8px;}
+  .param-row .lbl{color:#aab6e0;font-weight:500;}
+  .param-row .val{font-family:'Space Grotesk';font-weight:600;color:#fff;}
+  .track{height:8px;border-radius:999px;background:#ffffff12;position:relative;overflow:hidden;}
+  .fill{position:absolute;left:0;top:0;bottom:0;border-radius:999px;background:linear-gradient(90deg,#2563eb,#60a5fa);width:0;transition:width 1.4s cubic-bezier(.2,.8,.2,1);}
+  .knob{position:absolute;top:50%;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.4);transform:translateY(-50%);transition:left 1.4s cubic-bezier(.2,.8,.2,1);left:0;margin-left:-8px;}
+  .console-foot{margin-top:22px;padding-top:18px;border-top:1px solid #ffffff15;display:flex;gap:10px;}
+  .prod-chip{flex:1;background:#ffffff0a;border:1px solid #ffffff14;border-radius:12px;padding:11px 12px;}
+  .prod-chip .n{font-family:'Space Grotesk';font-weight:600;font-size:13.5px;color:#fff;}
+  .prod-chip .d{font-size:10.5px;color:#8ea0d0;margin-top:2px;}
+  .float-badge{position:absolute;right:-14px;top:30px;background:#fff;color:var(--ink);border-radius:14px;padding:10px 14px;box-shadow:var(--shadow-lg);font-size:12px;font-weight:700;display:flex;align-items:center;gap:8px;animation:floaty 5s ease-in-out infinite;}
+  .float-badge .up{color:#16a34a;font-family:'Space Grotesk';}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+  /* ===== SECTION GENERICS ===== */
+  section{padding:90px 0;}
+  .sec-head{max-width:680px;}
+  .sec-head.center{margin:0 auto;text-align:center;}
+  .kicker{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);}
+  h2{font-size:clamp(28px,3.6vw,42px);line-height:1.1;font-weight:700;margin-top:14px;}
+  .sec-head p{font-size:17px;color:var(--g600);margin-top:16px;line-height:1.6;}
+
+  /* trust strip */
+  .trust{background:var(--bg-soft);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:30px 0;}
+  .trust-inner{display:flex;align-items:center;justify-content:center;gap:14px 40px;flex-wrap:wrap;text-align:center;}
+  .trust-inner .t-label{font-size:13px;font-weight:600;color:var(--g500);}
+  .trust-prod{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk';font-weight:600;font-size:17px;color:var(--navy);}
+  .trust-prod .ic{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;}
+
+  /* products */
+  .prod-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:46px;}
+  @media(max-width:780px){.prod-grid{grid-template-columns:1fr;}}
+  .prod-card{position:relative;border:1px solid var(--border);border-radius:var(--rl);padding:30px;background:#fff;overflow:hidden;transition:all .3s;}
+  .prod-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:#cdd9f5;}
+  .prod-card .badge{position:absolute;top:22px;right:22px;font-size:11px;font-weight:700;padding:5px 10px;border-radius:999px;background:var(--blue-soft);color:var(--blue);}
+  .prod-card .picon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Space Grotesk';font-weight:700;font-size:22px;}
+  .prod-card h3{font-size:23px;margin-top:18px;}
+  .prod-card .role{font-size:13px;font-weight:600;color:var(--blue);margin-top:4px;}
+  .prod-card p{font-size:15px;color:var(--g600);margin-top:12px;line-height:1.6;}
+  .prod-card .lnk{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:700;color:var(--navy);margin-top:18px;}
+  .prod-card .lnk:hover{color:var(--blue);gap:10px;}
+
+  /* services */
+  .svc{background:var(--navy);color:#fff;position:relative;overflow:hidden;}
+  .svc .dotgrid{position:absolute;inset:0;background-image:radial-gradient(#ffffff14 1px,transparent 1px);background-size:24px 24px;mask-image:radial-gradient(ellipse 70% 80% at 70% 30%,#000,transparent);}
+  .svc .kicker{color:var(--blue-bright);}
+  .svc h2{color:#fff;}
+  .svc .sec-head p{color:#aab6e0;}
+  .svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:46px;}
+  @media(max-width:920px){.svc-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:520px){.svc-grid{grid-template-columns:1fr;}}
+  .svc-card{background:#ffffff08;border:1px solid #ffffff14;border-radius:var(--r);padding:24px;transition:all .3s;}
+  .svc-card:hover{background:#ffffff10;border-color:#3b82f655;transform:translateY(-4px);}
+  .svc-card .si{width:46px;height:46px;border-radius:12px;background:linear-gradient(150deg,#2563eb,#3b82f6);display:flex;align-items:center;justify-content:center;font-size:22px;}
+  .svc-card h3{font-size:18px;margin-top:16px;color:#fff;}
+  .svc-card p{font-size:13.5px;color:#9fb0dc;margin-top:8px;line-height:1.55;}
+  .svc-foot{margin-top:46px;text-align:center;}
+  .svc-foot .note{font-size:14px;color:#aab6e0;}
+
+  /* why */
+  .why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:46px;}
+  @media(max-width:780px){.why-grid{grid-template-columns:1fr;}}
+  .why-card{border:1px solid var(--border);border-radius:var(--r);padding:26px;background:#fff;display:flex;gap:16px;}
+  .why-card .wi{width:44px;height:44px;border-radius:12px;background:var(--blue-soft);color:var(--blue);display:flex;align-items:center;justify-content:center;flex:none;font-size:20px;}
+  .why-card h3{font-size:18px;}
+  .why-card p{font-size:14.5px;color:var(--g600);margin-top:6px;line-height:1.55;}
+
+  /* process */
+  .proc{background:var(--bg-soft);}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:46px;position:relative;}
+  @media(max-width:820px){.steps{grid-template-columns:1fr 1fr;}}
+  .step .num{font-family:'Space Grotesk';font-weight:700;font-size:14px;color:#fff;width:36px;height:36px;border-radius:10px;background:var(--navy);display:flex;align-items:center;justify-content:center;}
+  .step h3{font-size:17px;margin-top:16px;}
+  .step p{font-size:14px;color:var(--g600);margin-top:8px;line-height:1.55;}
+
+  /* CTA */
+  .cta{padding:40px 0 100px;}
+  .cta-card{position:relative;overflow:hidden;background:linear-gradient(150deg,var(--navy),#13205c);border-radius:30px;padding:64px 40px;text-align:center;}
+  .cta-card .dotgrid{position:absolute;inset:0;background-image:radial-gradient(#ffffff18 1px,transparent 1px);background-size:22px 22px;mask-image:radial-gradient(ellipse 60% 80% at 50% 30%,#000,transparent);}
+  .cta-card .glow{position:absolute;top:-60px;right:-40px;width:300px;height:300px;background:radial-gradient(closest-side,rgba(59,130,246,.4),transparent);}
+  .cta-card h2{color:#fff;position:relative;}
+  .cta-card p{color:#aab6e0;font-size:17px;margin-top:16px;position:relative;max-width:520px;margin-left:auto;margin-right:auto;}
+  .cta-btns{display:flex;gap:14px;justify-content:center;margin-top:32px;position:relative;flex-wrap:wrap;}
+  .btn-white{background:#fff;color:var(--navy);}
+  .btn-white:hover{transform:translateY(-2px);}
+  .btn-wa{background:#1f2f6b;color:#fff;border:1px solid #ffffff22;}
+  .btn-wa:hover{background:#26397f;}
+
+  /* footer */
+  footer{padding:54px 0;border-top:1px solid var(--border);}
+  .foot-top{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
+  .foot-links{display:flex;gap:26px;font-size:14px;font-weight:600;color:var(--g600);flex-wrap:wrap;}
+  .foot-links a:hover{color:var(--blue);}
+  .foot-bottom{margin-top:30px;padding-top:24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:13px;color:var(--g500);}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header id="hdr">
+  <div class="wrap">
+    <nav>
+      <img src="assets/parameter-logo.png" alt="Parameter" class="logo" />
+      <div class="nav-links">
+        <a href="#produk">Produk</a>
+        <a href="#jasa">Jasa</a>
+        <a href="#kenapa">Kenapa Kami</a>
+        <a href="#proses">Proses</a>
+      </div>
+      <div class="nav-cta">
+        <a href="#produk" class="btn btn-ghost">Lihat Produk</a>
+        <a href="https://www.instagram.com/parameter.id2026" target="_blank" rel="noopener" aria-label="Instagram Parameter" style="display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:999px;border:1px solid var(--border);color:var(--g600);transition:all .2s;" onmouseover="this.style.color='var(--blue)';this.style.borderColor='var(--blue)'" onmouseout="this.style.color='var(--g600)';this.style.borderColor='var(--border)'">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>
+        </a>
+        <a id="waNav" class="btn btn-primary" target="_blank" rel="noopener">Konsultasi Gratis</a>
+      </div>
+      <button class="nav-toggle" onclick="document.getElementById('waBtnMobile').click()" aria-label="Menu">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="wrap hero-inner">
+    <div>
+      <span class="eyebrow reveal"><span class="dot"></span> Studio Produk Digital · Indonesia</span>
+      <h1 class="reveal">Atur <span class="hl">parameter</span> pertumbuhan bisnis digital kamu.</h1>
+      <p class="sub reveal">Parameter bukan vendor biasa — kami <b>builder yang bikin & jalanin produk sendiri</b> (LMS Pro, Ritme). Pengalaman itu kami pakai buat bantu UMKM punya aplikasi, sistem, website & landing page yang beneran naikin produktivitas.</p>
+      <div class="hero-cta reveal">
+        <a id="waHero" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+          Konsultasi Gratis
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#produk" class="btn btn-ghost btn-lg">Lihat Produk Kami</a>
+      </div>
+      <div class="hero-trust reveal">
+        <span>Dipercaya untuk membangun:</span>
+        <b>LMS Pro</b><span style="color:var(--border)">•</span><b>Ritme</b><span style="color:var(--border)">•</span><b>Sistem UMKM</b>
+      </div>
+    </div>
+
+    <!-- parameter console -->
+    <div class="reveal" style="position:relative;">
+      <div class="console" id="console">
+        <div class="console-top">
+          <span class="ttl">parameter.config</span>
+          <span class="console-dots"><span></span><span></span><span></span></span>
+        </div>
+        <div class="param"><div class="param-row"><span class="lbl">Produktivitas</span><span class="val">+82%</span></div><div class="track"><div class="fill" data-w="82%"></div><div class="knob" data-w="82%"></div></div></div>
+        <div class="param"><div class="param-row"><span class="lbl">Efisiensi operasional</span><span class="val">+67%</span></div><div class="track"><div class="fill" data-w="67%"></div><div class="knob" data-w="67%"></div></div></div>
+        <div class="param"><div class="param-row"><span class="lbl">Penjualan online</span><span class="val">+94%</span></div><div class="track"><div class="fill" data-w="94%"></div><div class="knob" data-w="94%"></div></div></div>
+        <div class="console-foot">
+          <div class="prod-chip"><div class="n">LMS Pro</div><div class="d">Platform belajar</div></div>
+          <div class="prod-chip"><div class="n">Ritme</div><div class="d">OS studio kelas</div></div>
+        </div>
+      </div>
+      <div class="float-badge"><span class="up">▲ Produktif</span> diatur otomatis</div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<div class="trust">
+  <div class="wrap trust-inner reveal">
+    <span class="t-label">Kami bukan cuma bikin — kami pakai sendiri:</span>
+    <img src="assets/brand-logo-horizontal.png" alt="Platform Belajar Pro" style="height:30px;width:auto;object-fit:contain;" />
+    <img src="assets/ritme-logo-web-2048.png" alt="Ritme" style="height:26px;width:auto;object-fit:contain;" />
+    <span class="t-label">+ sistem custom untuk UMKM</span>
+  </div>
+</div>
+
+<!-- PRODUK -->
+<section id="produk">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Produk Kami</span>
+      <h2>Software yang kami bangun & jalanin sendiri.</h2>
+      <p>Bukti bahwa kami ngerti cara bikin produk digital yang dipakai beneran — bukan proyek yang selesai lalu ditinggal.</p>
+    </div>
+    <div class="prod-grid">
+      <div class="prod-card reveal">
+        <span class="badge">Live</span>
+        <img src="assets/brand-logo-horizontal.png" alt="Platform Belajar Pro" style="height:42px;width:auto;max-width:80%;object-fit:contain;display:block;" />
+        <h3 style="margin-top:20px;">Platform Belajar Pro</h3>
+        <div class="role">LMS &amp; Kursus Online</div>
+        <p>Sistem manajemen pembelajaran untuk instruktur & lembaga: kelas live, jadwal, materi, pembayaran, sampai rekaman — semua dalam satu platform.</p>
+        <a href="https://pro.platformbelajar.my.id" target="_blank" rel="noopener" class="lnk">Lihat selengkapnya →</a>
+      </div>
+      <div class="prod-card reveal">
+        <span class="badge">Live</span>
+        <img src="assets/ritme-logo-web-2048.png" alt="Ritme" style="height:36px;width:auto;max-width:70%;object-fit:contain;display:block;" />
+        <h3 style="margin-top:20px;">Ritme</h3>
+        <div class="role">Sistem Operasi untuk Studio Kelas</div>
+        <p>Booking, paket &amp; credit member, reminder WhatsApp, dan pembayaran QRIS untuk studio yoga, pilates, dance & gym kecil. Lokal-first.</p>
+        <a href="https://ritme.my.id" target="_blank" rel="noopener" class="lnk">Lihat selengkapnya →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JASA -->
+<section id="jasa" class="svc">
+  <div class="dotgrid"></div>
+  <div class="wrap" style="position:relative;">
+    <div class="sec-head reveal">
+      <span class="kicker">Jasa untuk UMKM</span>
+      <h2>Bisnismu butuh sistem? Kami bangunin.</h2>
+      <p>Dari ide jadi produk digital yang kepakai. Kami bantu UMKM & bisnis kecil-menengah naik kelas lewat teknologi yang pas, bukan yang ribet.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card reveal"><div class="si">📱</div><h3>Aplikasi</h3><p>Aplikasi web/mobile sesuai alur bisnismu — bukan template kaku.</p></div>
+      <div class="svc-card reveal"><div class="si">⚙️</div><h3>Sistem &amp; Dashboard</h3><p>Sistem internal & dashboard biar operasional rapi dan kelihatan datanya.</p></div>
+      <div class="svc-card reveal"><div class="si">🌐</div><h3>Website</h3><p>Website company profile / toko yang cepat, modern, dan gampang dikelola.</p></div>
+      <div class="svc-card reveal"><div class="si">🚀</div><h3>Landing Page</h3><p>Landing page konversi tinggi buat kampanye, produk, atau jualan.</p></div>
+    </div>
+    <div class="svc-foot reveal">
+      <p class="note" style="margin-bottom:22px;">Semua dibangun dengan satu tujuan: <strong style="color:#fff">bikin bisnismu lebih produktif.</strong></p>
+      <a href="https://dev.platformbelajar.my.id" target="_blank" rel="noopener" class="btn btn-white btn-lg">
+        Lihat Layanan &amp; Mulai Proyek
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- KENAPA -->
+<section id="kenapa">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Kenapa Parameter</span>
+      <h2>Builder produk digital, bukan sekadar vendor.</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal"><div class="wi">🏗️</div><div><h3>Punya produk sendiri</h3><p>Kami nggak cuma teori. LMS Pro & Ritme adalah produk kami yang dipakai user beneran — kami tahu cara bikin yang kepakai.</p></div></div>
+      <div class="why-card reveal"><div class="wi">🇮🇩</div><div><h3>Lokal & paham UMKM</h3><p>Bahasa Indonesia, harga masuk akal, paham cara bisnis lokal jalan. Bukan solusi impor yang mahal & kaku.</p></div></div>
+      <div class="why-card reveal"><div class="wi">🎯</div><div><h3>Fokus hasil, bukan fitur</h3><p>Kami ukur sukses dari produktivitas & pertumbuhan bisnismu — bukan dari banyaknya fitur yang nggak kepakai.</p></div></div>
+      <div class="why-card reveal"><div class="wi">🤝</div><div><h3>Dampingi, bukan tinggal</h3><p>Setelah launch kami nggak hilang. Kami bantu sampai sistemnya beneran jalan di tim kamu.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROSES -->
+<section id="proses" class="proc">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="kicker">Cara Kerja</span>
+      <h2>Dari ngobrol ke produk yang jalan.</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="num">01</div><h3>Konsultasi</h3><p>Ceritain masalah & target bisnismu. Gratis, tanpa komitmen.</p></div>
+      <div class="step reveal"><div class="num">02</div><h3>Rancang</h3><p>Kami susun solusi & alur produk yang pas dengan kebutuhanmu.</p></div>
+      <div class="step reveal"><div class="num">03</div><h3>Bangun</h3><p>Tim kami eksekusi — kamu lihat progresnya tiap langkah.</p></div>
+      <div class="step reveal"><div class="num">04</div><h3>Launch &amp; Dampingi</h3><p>Produk live, tim kamu dilatih, dan kami dampingi setelahnya.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="wrap">
+    <div class="cta-card reveal">
+      <div class="dotgrid"></div><div class="glow"></div>
+      <h2>Siap atur parameter bisnismu?</h2>
+      <p>Ngobrol gratis dulu yuk. Ceritain bisnismu, kami bantu cariin solusi digital yang paling pas — produk kami atau sistem custom.</p>
+      <div class="cta-btns">
+        <a id="waCta" class="btn btn-white btn-lg" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1012 2z" opacity=".15"/><path d="M12 2a10 10 0 00-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-2.8.8.8-2.8-.2-.3A8 8 0 1112 20z" fill="currentColor"/></svg>
+          Konsultasi via WhatsApp
+        </a>
+        <a id="mailCta" class="btn btn-wa btn-lg">Email Kami</a>
+      </div>
+      <a href="https://www.instagram.com/parameter.id2026" target="_blank" rel="noopener" style="position:relative;display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-size:14px;font-weight:600;color:#aab6e0;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>
+        Follow @parameter.id2026
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <img src="assets/parameter-logo.png" alt="Parameter" style="height:30px;" />
+      <div class="foot-links">
+        <a href="#produk">Produk</a>
+        <a href="#jasa">Jasa</a>
+        <a href="#kenapa">Kenapa Kami</a>
+        <a href="https://www.instagram.com/parameter.id2026" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>
+          Instagram
+        </a>
+        <a id="waFoot" target="_blank" rel="noopener">WhatsApp</a>
+        <a id="mailFoot">Email</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="yr"></span> Parameter · PT Platform Belajar Mandiri</span>
+      <span>Studio produk digital · Dibikin di Indonesia 🇮🇩</span>
+    </div>
+  </div>
+</footer>
+
+<a id="waBtnMobile" style="display:none" target="_blank" rel="noopener"></a>
+
+<script>
+  // contact links
+  var WA = "6281218566134", EMAIL = "jamagis1897@gmail.com";
+  var waUrl = "https://wa.me/" + WA + "?text=" + encodeURIComponent("Halo Parameter, saya mau konsultasi soal kebutuhan digital bisnis saya.");
+  var mailUrl = "mailto:" + EMAIL + "?subject=" + encodeURIComponent("Konsultasi Parameter");
+  ["waNav","waHero","waCta","waFoot","waBtnMobile"].forEach(function(id){var e=document.getElementById(id);if(e)e.href=waUrl;});
+  ["mailCta","mailFoot"].forEach(function(id){var e=document.getElementById(id);if(e)e.href=mailUrl;});
+  document.getElementById("yr").textContent = new Date().getFullYear();
+
+  // sticky nav
+  var hdr = document.getElementById("hdr");
+  addEventListener("scroll", function(){ hdr.classList.toggle("scrolled", scrollY > 12); }, {passive:true});
+
+  // reveal on scroll
+  var io = new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});},{threshold:.12,rootMargin:"0px 0px -6% 0px"});
+  document.querySelectorAll(".reveal").forEach(function(el){io.observe(el);});
+
+  // animate console sliders when visible
+  var consoleEl = document.getElementById("console");
+  var cio = new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting){
+      consoleEl.querySelectorAll(".fill").forEach(function(f){ f.style.width = f.dataset.w; });
+      consoleEl.querySelectorAll(".knob").forEach(function(k){ k.style.left = k.dataset.w; });
+      cio.unobserve(consoleEl);
+    }
+  });},{threshold:.4});
+  cio.observe(consoleEl);
+</script>
+</body>
+</html>
