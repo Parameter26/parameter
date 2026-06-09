@@ -35,7 +35,7 @@ export function Jasa() {
           </h2>
           <RiseIn delay={0.2} className="max-w-xs">
             {/* maskot lagi bangun */}
-            <div aria-hidden className="mb-6 hidden justify-end lg:flex">
+            <div aria-hidden className="mb-6 flex justify-center lg:justify-end">
               <Image
                 src="/para-building.png"
                 alt=""

@@ -182,7 +182,7 @@ export function ConsoleSection() {
           </p>
 
           {/* maskot mikir */}
-          <div aria-hidden className="mt-10 hidden lg:block">
+          <div aria-hidden className="mt-10 flex justify-center lg:block">
             <Image
               src="/para-thinking.png"
               alt=""

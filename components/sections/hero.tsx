@@ -95,6 +95,18 @@ export function Hero() {
           </a>
         </RiseIn>
 
+        {/* maskot — versi mobile (in-flow, centered, no overlap) */}
+        <div className="mt-12 flex justify-center lg:hidden">
+          <Image
+            src="/para-welcome.png"
+            alt="Parameter robot"
+            width={280}
+            height={320}
+            priority
+            className="animate-float h-auto w-[230px] object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,.5)]"
+          />
+        </div>
+
         {/* footer hero */}
         <RiseIn
           delay={0.55}
