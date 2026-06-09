@@ -1,0 +1,209 @@
+/* ============================================================
+   PARAMETER — Design System v3
+   Direction: Clean Premium Studio (ref: sohub.digital)
+   Palette: near-black netral + putih + frame terang (kalem, monokrom)
+   Accent: biru brand DIPAKAI HEMAT (CTA & highlight kecil)
+   Fonts: General Sans (display, bersih & legible) · Satoshi (body) · JetBrains Mono (label kecil)
+   ============================================================ */
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* ---- Fonts ---- */
+  --font-sans: 'Satoshi', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: 'General Sans', 'Satoshi', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
+
+  /* ---- Animations ---- */
+  --animate-spotlight: spotlight 3s ease-in-out infinite;
+  --animate-float: float 6s ease-in-out infinite;
+
+  /* ---- Palette netral bersih ---- */
+  --color-ink: #0E0F13;        /* dark base (near-black netral) */
+  --color-ink-2: #16181D;      /* panel gelap */
+  --color-navy: #14161B;       /* dark neutral — bg gelap & teks gelap di section terang */
+  --color-surface: #1A1C22;    /* card di dark */
+  --color-frame: #ECEDF0;      /* frame terang / section terang */
+  --color-cream: #F6F7F9;      /* teks crisp di dark (near-white) */
+  --color-cream-2: #DCDDE2;    /* border di light */
+  --color-blue: #2D6BF5;       /* accent brand (hemat) */
+  --color-blue-bright: #4B83FF;
+  --color-blue-elec: #6FA0FF;  /* highlight kecil di dark */
+  --color-mist: #9EA1A9;       /* teks sekunder di dark (netral) */
+  --color-slate: #6A6D75;      /* teks redup di dark */
+  --color-mutedlight: #5F626B; /* teks sekunder di light */
+  --color-linedark: rgba(255,255,255,0.09);
+  --color-linelight: rgba(14,15,19,0.10);
+
+  /* ---- shadcn semantic ---- */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: calc(var(--radius) * 0.75);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.5);
+  --radius-2xl: calc(var(--radius) * 2);
+}
+
+:root {
+  --background: #0E0F13;
+  --foreground: #F6F7F9;
+  --card: #1A1C22;
+  --card-foreground: #F6F7F9;
+  --popover: #16181D;
+  --popover-foreground: #F6F7F9;
+  --primary: #2D6BF5;
+  --primary-foreground: #FFFFFF;
+  --secondary: #1A1C22;
+  --secondary-foreground: #F6F7F9;
+  --muted: #16181D;
+  --muted-foreground: #9EA1A9;
+  --accent: #2D6BF5;
+  --accent-foreground: #FFFFFF;
+  --destructive: #FF5247;
+  --border: rgba(255,255,255,0.09);
+  --input: rgba(255,255,255,0.14);
+  --ring: #2D6BF5;
+  --radius: 16px;
+}
+
+/* Section terang: token jadi light */
+.on-cream {
+  --background: #ECEDF0;
+  --foreground: #0E0F13;
+  --card: #FFFFFF;
+  --card-foreground: #0E0F13;
+  --muted-foreground: #5F626B;
+  --border: rgba(14,15,19,0.10);
+  --input: rgba(14,15,19,0.16);
+  background: var(--background);
+  color: var(--foreground);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    @apply font-sans antialiased;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply text-foreground;
+    background: var(--color-frame);  /* frame terang di luar panel */
+    overflow-x: hidden;
+  }
+  h1, h2, h3, .font-display {
+    font-family: var(--font-heading);
+    letter-spacing: -0.015em;
+    font-weight: 600;
+  }
+  ::selection {
+    background: #2D6BF5;
+    color: #FFFFFF;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* spotlight animation */
+  @keyframes spotlight {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  /* floating maskot — gerak halus naik-turun + miring dikit */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-18px) rotate(-1.5deg);
+    }
+  }
+}
+
+/* ============================================================
+   Utility & tekstur
+   ============================================================ */
+@layer utilities {
+  .animate-spotlight {
+    animation: spotlight 3s ease-in-out infinite;
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .label-mono {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  /* grid teknis halus */
+  .grid-tech {
+    background-image:
+      linear-gradient(var(--color-linedark) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-linedark) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .grid-tech-light {
+    background-image:
+      linear-gradient(var(--color-linelight) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-linelight) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* glow biru — sangat halus */
+  .glow-blue {
+    background: radial-gradient(closest-side, rgba(45,107,245,0.22), transparent);
+  }
+
+  .text-grad-blue {
+    background: linear-gradient(120deg, #6FA0FF, #2D6BF5);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* baris mask reveal — beri ruang biar descender ga kepotong */
+  .mask-line {
+    overflow: hidden;
+    display: block;
+    padding-bottom: 0.08em;
+  }
+}
