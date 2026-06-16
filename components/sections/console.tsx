@@ -26,7 +26,9 @@ function Slider({ label, target, reveal }: Param & { reveal: boolean }) {
   const trackRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (reveal) setPct(target);
+    if (!reveal) return;
+    const t = window.setTimeout(() => setPct(target), 0);
+    return () => clearTimeout(t);
   }, [reveal, target]);
 
   const setFromClientX = (clientX: number) => {

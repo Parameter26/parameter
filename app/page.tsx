@@ -6,6 +6,7 @@ import { ConsoleSection } from "@/components/sections/console";
 import { Produk } from "@/components/sections/produk";
 import { Jasa } from "@/components/sections/jasa";
 import { Portofolio } from "@/components/sections/portofolio";
+import { UmkmTools } from "@/components/sections/umkm-tools";
 import { Kenapa } from "@/components/sections/kenapa";
 import { Proses } from "@/components/sections/proses";
 import { CTA } from "@/components/sections/cta";
@@ -43,6 +44,9 @@ export default function Home() {
         </Panel>
         <Panel>
           <Portofolio />
+        </Panel>
+        <Panel>
+          <UmkmTools />
         </Panel>
         <Panel>
           <Kenapa />

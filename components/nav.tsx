@@ -1,17 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { InstagramIcon } from "@/components/icons";
 import { Logo } from "@/components/logo";
 import { INSTAGRAM, waUrl } from "@/lib/contact";
 
 const LINKS = [
-  { href: "#produk", label: "Produk" },
-  { href: "#jasa", label: "Jasa" },
-  { href: "#portofolio", label: "Portofolio" },
-  { href: "#kenapa", label: "Kenapa" },
-  { href: "#proses", label: "Proses" },
+  { href: "/#produk", label: "Produk" },
+  { href: "/#jasa", label: "Jasa" },
+  { href: "/portofolio", label: "Portofolio" },
+  { href: "/umkmtools", label: "UMKM Tools" },
+  { href: "/#kenapa", label: "Kenapa" },
 ];
 
 export function Nav() {
@@ -30,22 +31,22 @@ export function Nav() {
         className={`flex w-full max-w-6xl items-center justify-between gap-4 rounded-full border py-2 pl-5 pr-2 transition-all duration-300 ${
           scrolled
             ? "border-linedark bg-ink/80 backdrop-blur-xl"
-            : "border-transparent bg-ink/40 backdrop-blur-md"
+            : "border-linedark bg-ink/[0.88] backdrop-blur-xl"
         }`}
       >
-        <a href="#top" aria-label="Parameter beranda" className="flex items-center">
+        <Link href="/" aria-label="Parameter beranda" className="flex items-center">
           <Logo variant="light" height={24} />
-        </a>
+        </Link>
 
         <div className="hidden items-center gap-7 md:flex">
           {LINKS.map((l) => (
-            <a
+            <Link
               key={l.href}
               href={l.href}
               className="text-[14px] font-medium text-mist transition-colors hover:text-cream"
             >
               {l.label}
-            </a>
+            </Link>
           ))}
         </div>
 

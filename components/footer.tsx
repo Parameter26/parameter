@@ -1,11 +1,14 @@
+import Link from "next/link";
 import { InstagramIcon } from "@/components/icons";
 import { Logo } from "@/components/logo";
 import { INSTAGRAM, mailUrl, waUrl } from "@/lib/contact";
 
 const LINKS = [
-  { href: "#produk", label: "Produk" },
-  { href: "#jasa", label: "Jasa" },
-  { href: "#kenapa", label: "Kenapa Kami" },
+  { href: "/#produk", label: "Produk" },
+  { href: "/#jasa", label: "Jasa" },
+  { href: "/portofolio", label: "Portofolio" },
+  { href: "/umkmtools", label: "UMKM Tools" },
+  { href: "/#kenapa", label: "Kenapa Kami" },
 ];
 
 export function Footer() {
@@ -17,13 +20,13 @@ export function Footer() {
           <Logo variant="light" height={26} />
           <div className="flex flex-wrap items-center gap-x-7 gap-y-3 font-mono text-[13px] text-mist">
             {LINKS.map((l) => (
-              <a
+              <Link
                 key={l.href}
                 href={l.href}
                 className="transition-colors hover:text-blue-elec"
               >
                 {l.label}
-              </a>
+              </Link>
             ))}
             <a
               href={INSTAGRAM}

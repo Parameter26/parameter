@@ -20,8 +20,8 @@ export function useReveal<T extends HTMLElement = HTMLDivElement>() {
 
     // reduced motion → langsung tampil
     if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
-      setShown(true);
-      return;
+      const t = window.setTimeout(() => setShown(true), 0);
+      return () => clearTimeout(t);
     }
 
     let done = false;
