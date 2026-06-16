@@ -9,6 +9,7 @@ import { INSTAGRAM, waUrl } from "@/lib/contact";
 const LINKS = [
   { href: "#produk", label: "Produk" },
   { href: "#jasa", label: "Jasa" },
+  { href: "#portofolio", label: "Portofolio" },
   { href: "#kenapa", label: "Kenapa" },
   { href: "#proses", label: "Proses" },
 ];
