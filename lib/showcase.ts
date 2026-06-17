@@ -47,7 +47,7 @@ export const TOOLS: Tool[] = [
     tagline: "Berhenti nebak harga jual",
     desc: "Hitung HPP (Harga Pokok Produksi) & harga jual otomatis, kelola stok bahan + tanggal kadaluarsa. Multi-usaha, jalan di HP & offline.",
     icon: "🧮",
-    thumbnail: "/tools/kalkulator-hpp-thumbnail.png",
+    thumbnail: "/tools/kalkulator-hpp-banner-thumbnail.png",
     badge: "Berbayar",
     price: "Rp 49.000",
     priceNote: "sekali bayar, pakai selamanya",
