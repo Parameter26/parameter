@@ -16,10 +16,12 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+      { url: "/parameter-favicon-20260617.png", type: "image/png", sizes: "512x512" },
     ],
-    apple: [{ url: "/apple-icon.png", type: "image/png", sizes: "180x180" }],
+    shortcut: [{ url: "/parameter-favicon-20260617.png", type: "image/png" }],
+    apple: [
+      { url: "/parameter-apple-icon-20260617.png", type: "image/png", sizes: "180x180" },
+    ],
   },
 };
 
