@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ArrowUpRight, Check } from "lucide-react";
 import type { Tool } from "@/lib/showcase";
 
@@ -10,16 +11,37 @@ const BADGE: Record<Tool["badge"], string> = {
 export function ToolCard({ t }: { t: Tool }) {
   const inner = (
     <>
-      <div className="flex items-start justify-between gap-3">
-        <div className="flex size-12 items-center justify-center rounded-2xl border border-linelight bg-frame text-2xl">
-          {t.icon}
+      {t.thumbnail ? (
+        <div className="relative aspect-[16/9] overflow-hidden rounded-[18px] border border-linelight bg-frame">
+          <Image
+            src={t.thumbnail}
+            alt={`Thumbnail ${t.name}`}
+            fill
+            sizes="(max-width: 768px) 100vw, 33vw"
+            className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.04]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink/28 via-transparent to-transparent" />
+          <div className="absolute bottom-3 left-3 flex size-11 items-center justify-center rounded-2xl border border-white/60 bg-white/85 text-2xl shadow-[0_14px_30px_rgba(10,25,44,.16)] backdrop-blur">
+            {t.icon}
+          </div>
+          <span
+            className={`absolute right-3 top-3 rounded-full border px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-wider backdrop-blur ${BADGE[t.badge]}`}
+          >
+            {t.badge}
+          </span>
         </div>
-        <span
-          className={`rounded-full border px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-wider ${BADGE[t.badge]}`}
-        >
-          {t.badge}
-        </span>
-      </div>
+      ) : (
+        <div className="flex items-start justify-between gap-3">
+          <div className="flex size-12 items-center justify-center rounded-2xl border border-linelight bg-frame text-2xl">
+            {t.icon}
+          </div>
+          <span
+            className={`rounded-full border px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-wider ${BADGE[t.badge]}`}
+          >
+            {t.badge}
+          </span>
+        </div>
+      )}
 
       <h3 className="mt-5 text-xl font-semibold text-navy">{t.name}</h3>
       <div className="mt-1 font-mono text-[12px] font-medium text-blue">{t.tagline}</div>

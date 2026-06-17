@@ -32,6 +32,7 @@ export type Tool = {
   tagline: string;
   desc: string;
   icon: string;
+  thumbnail?: string;
   badge: "Berbayar" | "Gratis" | "Segera";
   price: string;
   priceNote?: string;
@@ -46,6 +47,7 @@ export const TOOLS: Tool[] = [
     tagline: "Berhenti nebak harga jual",
     desc: "Hitung HPP (Harga Pokok Produksi) & harga jual otomatis, kelola stok bahan + tanggal kadaluarsa. Multi-usaha, jalan di HP & offline.",
     icon: "🧮",
+    thumbnail: "/tools/kalkulator-hpp-thumbnail.png",
     badge: "Berbayar",
     price: "Rp 49.000",
     priceNote: "sekali bayar, pakai selamanya",
@@ -68,6 +70,7 @@ export const TOOLS: Tool[] = [
     tagline: "Prompt siap pakai buat kerja lebih cepat",
     desc: "Kumpulan prompt AI gratis untuk bantu bikin ide konten, copywriting, riset, strategi bisnis, dan pekerjaan harian lebih efisien.",
     icon: "🤖",
+    thumbnail: "/tools/50-prompt-ai-thumbnail.png",
     badge: "Gratis",
     price: "Gratis",
     priceNote: "akses langsung lewat pakaiAI",
