@@ -42,6 +42,10 @@ type Phase = "ready" | "playing" | "dead";
 
 export function Game() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  // true kalau area game lagi cukup keliatan di layar.
+  // Dipakai biar Spasi/ArrowUp ga "bajak" scroll halaman pas user lagi di section lain.
+  const inView = useRef(false);
   const [score, setScore] = useState(0);
   const [best, setBest] = useState(0);
   const [phase, setPhase] = useState<Phase>("ready");
@@ -106,14 +110,29 @@ export function Game() {
     }
   }, [resetGame]);
 
-  // Input: keyboard (Spasi / ArrowUp) hanya saat canvas/section relevan
+  // Pantau apakah section game lagi keliatan di layar.
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        inView.current = entry.isIntersecting;
+      },
+      // Aktif hanya kalau mayoritas area game keliatan → ngepasin niat user buat main.
+      { threshold: 0.6 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  // Input: keyboard (Spasi / ArrowUp) hanya saat section game lagi keliatan,
+  // biar ga bajak scroll halaman pas user lagi di bagian lain.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.code === "Space" || e.code === "ArrowUp") {
-        // Cegah scroll halaman hanya kalau game lagi aktif diklik
-        if (game.current.phase === "playing") e.preventDefault();
-        flap();
-      }
+      if (e.code !== "Space" && e.code !== "ArrowUp") return;
+      if (!inView.current) return; // di luar layar → biarin scroll normal
+      e.preventDefault(); // game keliatan → Spasi buat ngepak, bukan scroll
+      flap();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -292,7 +311,7 @@ export function Game() {
   }, []);
 
   return (
-    <section id="game" className="relative overflow-hidden bg-ink py-28">
+    <section ref={sectionRef} id="game" className="relative overflow-hidden bg-ink py-28">
       {/* glow ambient */}
       <div className="pointer-events-none absolute left-1/2 top-1/3 h-[420px] w-[420px] -translate-x-1/2 glow-blue" />
 
