@@ -49,6 +49,11 @@ export function Game() {
   const [score, setScore] = useState(0);
   const [best, setBest] = useState(0);
   const [phase, setPhase] = useState<Phase>("ready");
+  const [muted, setMuted] = useState(false);
+
+  // Web Audio: dibikin lazy pas interaksi pertama (kebijakan autoplay browser).
+  const audioRef = useRef<AudioContext | null>(null);
+  const mutedRef = useRef(false); // mirror `muted` biar kebaca di game loop tanpa re-bind.
 
   // State game disimpan di ref biar ga trigger re-render tiap frame.
   const game = useRef({
@@ -66,6 +71,70 @@ export function Game() {
     game.current.phase = phase;
   }, [phase]);
 
+  // Sinkronkan mute ke ref + simpan preferensi.
+  useEffect(() => {
+    mutedRef.current = muted;
+    try {
+      window.localStorage.setItem("param-flappy-muted", muted ? "1" : "0");
+    } catch {
+      /* ignore */
+    }
+  }, [muted]);
+
+  // Efek suara ringan via Web Audio (tanpa file aset).
+  const playSfx = useCallback((type: "flap" | "score" | "hit") => {
+    if (mutedRef.current) return;
+    try {
+      let ctx = audioRef.current;
+      if (!ctx) {
+        const AC =
+          window.AudioContext ||
+          (window as unknown as { webkitAudioContext?: typeof AudioContext })
+            .webkitAudioContext;
+        if (!AC) return;
+        ctx = new AC();
+        audioRef.current = ctx;
+      }
+      if (ctx.state === "suspended") void ctx.resume();
+      const now = ctx.currentTime;
+
+      const tone = (
+        freq: number,
+        dur: number,
+        wave: OscillatorType,
+        gainPeak: number,
+        slideTo?: number,
+        startAt = 0
+      ) => {
+        const osc = ctx!.createOscillator();
+        const gain = ctx!.createGain();
+        const t0 = now + startAt;
+        osc.type = wave;
+        osc.frequency.setValueAtTime(freq, t0);
+        if (slideTo) osc.frequency.exponentialRampToValueAtTime(slideTo, t0 + dur);
+        gain.gain.setValueAtTime(0.0001, t0);
+        gain.gain.exponentialRampToValueAtTime(gainPeak, t0 + 0.012);
+        gain.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+        osc.connect(gain).connect(ctx!.destination);
+        osc.start(t0);
+        osc.stop(t0 + dur + 0.02);
+      };
+
+      if (type === "flap") {
+        tone(420, 0.09, "square", 0.12, 720);
+      } else if (type === "score") {
+        tone(660, 0.09, "sine", 0.16);
+        tone(990, 0.12, "sine", 0.14, undefined, 0.07);
+      } else {
+        // hit / game over — turun menukik
+        tone(240, 0.18, "sawtooth", 0.2, 70);
+        tone(120, 0.3, "square", 0.14, 50, 0.06);
+      }
+    } catch {
+      /* ignore — audio opsional, jangan ganggu gameplay */
+    }
+  }, []);
+
   // Load best score dari localStorage (situs asli user, aman dipakai).
   // Di-defer via setTimeout(0) biar ga setState sinkron di dalam effect (lint) &
   // hindari mismatch hidrasi (server render selalu 0).
@@ -74,6 +143,7 @@ export function Game() {
       try {
         const saved = window.localStorage.getItem("param-flappy-best");
         if (saved) setBest(parseInt(saved, 10) || 0);
+        if (window.localStorage.getItem("param-flappy-muted") === "1") setMuted(true);
       } catch {
         /* ignore */
       }
@@ -101,14 +171,16 @@ export function Game() {
       setPhase("playing");
       g.phase = "playing";
       g.vel = FLAP;
+      playSfx("flap");
     } else if (g.phase === "playing") {
       g.vel = FLAP;
+      playSfx("flap");
     } else if (g.phase === "dead") {
       resetGame();
       setPhase("ready");
       g.phase = "ready";
     }
-  }, [resetGame]);
+  }, [resetGame, playSfx]);
 
   // Pantau apakah section game lagi keliatan di layar.
   useEffect(() => {
@@ -229,6 +301,7 @@ export function Game() {
             p.scored = true;
             g.score++;
             setScore(g.score);
+            playSfx("score");
           }
         }
 
@@ -295,6 +368,7 @@ export function Game() {
       if (g.phase !== "playing") return;
       g.phase = "dead";
       setPhase("dead");
+      playSfx("hit");
       setBest((b) => {
         const nb = Math.max(b, g.score);
         try {
@@ -308,7 +382,7 @@ export function Game() {
 
     render();
     return () => cancelAnimationFrame(g.rafId);
-  }, []);
+  }, [playSfx]);
 
   return (
     <section ref={sectionRef} id="game" className="relative overflow-hidden bg-ink py-28">
@@ -350,6 +424,20 @@ export function Game() {
                 ref={canvasRef}
                 style={{ width: "100%", height: "auto", display: "block", aspectRatio: `${W} / ${H}` }}
               />
+
+              {/* tombol mute — stopPropagation biar klik di sini ga ikut nge-flap */}
+              <button
+                type="button"
+                onPointerDown={(e) => {
+                  e.stopPropagation();
+                  setMuted((m) => !m);
+                }}
+                aria-label={muted ? "Nyalakan suara game" : "Matikan suara game"}
+                aria-pressed={muted}
+                className="absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-linedark bg-ink/70 text-cream backdrop-blur-[2px] transition-colors hover:bg-ink/90"
+              >
+                {muted ? "🔇" : "🔊"}
+              </button>
 
               {/* overlay READY */}
               {phase === "ready" && (
