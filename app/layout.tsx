@@ -1,8 +1,15 @@
 import type { Metadata } from "next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 
+// GA4 Measurement ID situs Parameter (parameter.cloud). Publik — aman di-commit.
+// Bisa di-override lewat env NEXT_PUBLIC_GA_ID kalau perlu.
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? "G-S6S2CZCE6F";
+// Cuma nyalain GA di production, biar dev/localhost nggak ngotorin data.
+const gaEnabled = process.env.NODE_ENV === "production" && Boolean(GA_ID);
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://parameter.id"),
+  metadataBase: new URL("https://parameter.cloud"),
   title: "Parameter — Studio Produk Digital Indonesia",
   description:
     "Parameter membangun produk digital yang beneran dipakai. Kami bikin SaaS sendiri (Platform Belajar Pro, Ritme) & bantu UMKM punya aplikasi, sistem, website, dan landing page yang naikin produktivitas.",
@@ -44,6 +51,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-dvh">{children}</body>
+      {gaEnabled ? <GoogleAnalytics gaId={GA_ID} /> : null}
     </html>
   );
 }
