@@ -8,6 +8,7 @@ const LINKS = [
   { href: "/#jasa", label: "Jasa" },
   { href: "/portofolio", label: "Portofolio" },
   { href: "/umkmtools", label: "UMKM Tools" },
+  { href: "https://lamuri.parameter.cloud", label: "Edukasi" },
   { href: "/#kenapa", label: "Kenapa Kami" },
 ];
 
