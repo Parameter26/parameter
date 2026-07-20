@@ -6,7 +6,9 @@ import { PROJECTS } from "@/lib/showcase";
 import { waUrl } from "@/lib/contact";
 
 export function Portofolio() {
-  const featured = PROJECTS[0];
+  /** Teaser: tampilkan maks 2 proyek + kartu ajakan biar pas 3 kolom. */
+  const teaser = PROJECTS.slice(0, 2);
+  const single = teaser.length === 1;
   return (
     <section id="portofolio" className="bg-ink py-28">
       <div className="mx-auto max-w-7xl px-6">
@@ -26,10 +28,12 @@ export function Portofolio() {
 
         {/* grid teaser */}
         <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          <RiseIn className="lg:col-span-2">
-            <ProjectCard p={featured} />
-          </RiseIn>
-          <RiseIn delay={0.12}>
+          {teaser.map((p, i) => (
+            <RiseIn key={p.name} delay={i * 0.12} className={single ? "lg:col-span-2" : ""}>
+              <ProjectCard p={p} />
+            </RiseIn>
+          ))}
+          <RiseIn delay={teaser.length * 0.12}>
             <ProjectInviteCard href={waUrl("Halo Parameter, usaha saya mau dibangunin website")} />
           </RiseIn>
         </div>

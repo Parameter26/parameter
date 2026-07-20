@@ -25,6 +25,18 @@ export const PROJECTS: Project[] = [
       "Bikin usaha kecil tampil sekelas brand besar — naikin kepercayaan calon pembeli & permudah pemesanan. Dari sekadar 'jualan di story' jadi punya etalase yang kerja 24 jam.",
     tags: ["Tampil profesional", "Foto produk sinematik", "Order via WhatsApp", "Mobile-first"],
   },
+  {
+    name: "Loview",
+    kategori: "Website Perusahaan · Multimedia & Periklanan (OOH)",
+    hero: "/portfolio/loview-hero.webp",
+    logo: "/portfolio/loview-logo.png",
+    domain: "loview.click",
+    href: "https://loview.click",
+    desc: "Konsultan multimedia di bawah PT Cakra Mahkota Kreasi dengan dua jalur layanan — OOH Loview (billboard, videotron, signage) dan Loview More (kampanye, event, produksi kreatif). Kami rapikan semuanya jadi satu website korporat: struktur brand, enam lini layanan, portofolio kerja, artikel edukasi, sampai form inquiry yang langsung terarah.",
+    bantu:
+      "Bikin perusahaan jasa yang layanannya kompleks jadi gampang dimengerti calon klien — struktur brand jelas, portofolio kelihatan nyata, dan calon klien bisa langsung kirim kebutuhan lewat form atau WhatsApp.",
+    tags: ["Company profile", "Struktur brand & layanan", "Form inquiry", "Artikel & SEO"],
+  },
 ];
 
 export type Tool = {
