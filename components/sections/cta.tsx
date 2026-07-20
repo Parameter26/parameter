@@ -39,7 +39,7 @@ export function CTA() {
             lines={[
               <span key="c1">Jangan</span>,
               <span key="c2" className="text-grad-blue">
-                malu-malu.
+                malu-malu
               </span>,
             ]}
           />

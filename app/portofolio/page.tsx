@@ -24,7 +24,7 @@ export default function PortofolioPage() {
               <h1 className="mt-4 text-[clamp(34px,6vw,76px)] font-semibold leading-[0.98] tracking-tight text-cream">
                 Karya yang kami
                 <br />
-                bangun buat usaha lokal.
+                bangun buat usaha lokal
               </h1>
               <p className="mt-5 max-w-2xl text-[16px] leading-relaxed text-mist">
                 Bukan mockup. Tiap proyek di sini website beneran yang udah online & kepakai — kami

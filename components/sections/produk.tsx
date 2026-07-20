@@ -9,7 +9,7 @@ export function Produk() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex flex-wrap items-end justify-between gap-6 border-b border-linedark pb-8">
           <h2 className="text-[clamp(30px,5vw,68px)] font-semibold leading-[0.98] tracking-tight text-cream">
-            <MaskReveal lines={["Produk yang kami", "bangun & jalanin."]} />
+            <MaskReveal lines={["Produk yang kami", "bangun & jalanin"]} />
           </h2>
           <RiseIn delay={0.2} className="max-w-xs">
             <span className="label-mono text-blue-elec">[ 01 — Produk ]</span>

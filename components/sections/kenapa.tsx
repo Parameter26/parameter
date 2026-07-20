@@ -29,7 +29,7 @@ export function Kenapa() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid gap-6 border-b border-linedark pb-8 md:grid-cols-[1.4fr_1fr]">
           <h2 className="text-[clamp(30px,5vw,68px)] font-semibold leading-[0.98] tracking-tight text-cream">
-            <MaskReveal lines={["Builder, bukan", "sekadar vendor."]} />
+            <MaskReveal lines={["Builder, bukan", "sekadar vendor"]} />
           </h2>
           <RiseIn delay={0.2} className="flex items-end">
             <span className="label-mono text-blue-elec">[ 03 — Kenapa Parameter ]</span>

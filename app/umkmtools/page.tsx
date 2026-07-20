@@ -24,7 +24,7 @@ export default function UmkmToolsPage() {
               <h1 className="mt-4 text-[clamp(34px,6vw,76px)] font-semibold leading-[0.98] tracking-tight text-navy">
                 Alat siap pakai
                 <br />
-                buat bantu usahamu.
+                buat bantu usahamu
               </h1>
               <p className="mt-5 max-w-2xl text-[16px] leading-relaxed text-mutedlight">
                 Tools praktis yang dibuat khusus biar UMKM lebih gampang ngatur usaha — dari hitung

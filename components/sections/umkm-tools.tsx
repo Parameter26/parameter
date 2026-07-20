@@ -11,7 +11,7 @@ export function UmkmTools() {
         {/* header */}
         <div className="flex flex-wrap items-end justify-between gap-6 border-b border-linelight pb-8">
           <h2 className="text-[clamp(30px,5vw,68px)] font-semibold leading-[0.98] tracking-tight text-navy">
-            <MaskReveal lines={["Alat siap pakai", "buat bantu usahamu."]} />
+            <MaskReveal lines={["Alat siap pakai", "buat bantu usahamu"]} />
           </h2>
           <RiseIn delay={0.2} className="max-w-xs">
             <span className="label-mono text-blue">[ 04 — UMKM Tools ]</span>

@@ -56,7 +56,7 @@ export function Hero() {
               <span key="l1">Atur parameter</span>,
               <span key="l2">pertumbuhan</span>,
               <span key="l3">
-                bisnis <span className="text-grad-blue">digitalmu.</span>
+                bisnis <span className="text-grad-blue">digitalmu</span>
               </span>,
             ]}
           />

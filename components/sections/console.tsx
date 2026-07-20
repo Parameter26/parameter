@@ -175,7 +175,7 @@ export function ConsoleSection() {
           <h2 className="mt-5 text-[clamp(30px,4.4vw,56px)] font-semibold leading-[1.04] tracking-tight text-cream">
             Tiap keputusan,
             <br />
-            sebuah <span className="text-grad-blue">parameter</span>.
+            sebuah <span className="text-grad-blue">parameter</span>
           </h2>
           <p className="mt-6 max-w-md text-[16px] leading-relaxed text-mist md:text-[17px]">
             Kami nggak ngejar fitur. Kami atur variabel yang beneran ngegerakin

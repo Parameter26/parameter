@@ -15,7 +15,7 @@ export function Portofolio() {
         {/* header */}
         <div className="flex flex-wrap items-end justify-between gap-6 border-b border-linedark pb-8">
           <h2 className="text-[clamp(30px,5vw,68px)] font-semibold leading-[0.98] tracking-tight text-cream">
-            <MaskReveal lines={["Karya yang kami", "bangun buat usaha lokal."]} />
+            <MaskReveal lines={["Karya yang kami", "bangun buat usaha lokal"]} />
           </h2>
           <RiseIn delay={0.2} className="max-w-xs">
             <span className="label-mono text-blue-elec">[ 03 — Portofolio ]</span>

@@ -31,7 +31,7 @@ export function Jasa() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <h2 className="text-[clamp(30px,5vw,68px)] font-semibold leading-[0.98] tracking-tight text-navy">
-            <MaskReveal lines={["Bisnismu butuh", "sistem? Kami bangunin."]} />
+            <MaskReveal lines={["Bisnismu butuh", "sistem? Kami bangunin"]} />
           </h2>
           <RiseIn delay={0.2} className="max-w-xs">
             {/* maskot lagi bangun */}
